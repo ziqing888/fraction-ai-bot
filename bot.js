@@ -341,7 +341,7 @@ async function 处理单个钱包(私钥, 序号, 总数) {
     ],
     colWidths: [10, 30, 15, 15, 20], 
     colAligns: ['left', 'left', 'right', 'right', 'left'],
-    wordWrap: true, /
+    wordWrap: true, 
     style: {
       head: [], 
       border: [] 
