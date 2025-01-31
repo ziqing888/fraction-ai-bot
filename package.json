@@ -1,1 +1,18 @@
+{
+  "name": "fraction-ai-bot",
+  "description": "项目描述",
+  "main": "index.js",
+  "scripts": {
+    "start": "node bot.js"
+  },
+  "dependencies": {
+    "axios": "",
+    "chalk": "",
+    "figlet": "",
+    "web3": "",
+    "cli-table3": "",
+    "gradient-string": "",
+    "log-update": ""
+  }
+}
 
