@@ -1,18 +1,25 @@
 {
-  "name": "fraction-ai-bot",
-  "description": "项目描述",
+  "name": "fractionai-automation",
+  "version": "2.1.0",
   "main": "index.js",
-  "scripts": {
-    "start": "node bot.js"
-  },
+  "type": "module",  
   "dependencies": {
-    "axios": "",
-    "chalk": "",
-    "figlet": "",
-    "web3": "",
-    "cli-table3": "",
-    "gradient-string": "",
-    "log-update": ""
-  }
+    "axios": "^0.27.2",
+    "chalk": "^5.2.0",
+    "figlet": "^1.5.0",
+    "web3": "^1.6.1",
+    "fs-extra": "^10.1.0",
+    "cli-table3": "^0.6.0",
+    "gradient-string": "^1.0.4",
+    "log-update": "^4.0.0",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "",
+  "license": "ISC"
 }
+
 
