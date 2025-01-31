@@ -50,7 +50,7 @@ Fraction AI Testnet (SEPOLIA)
 首先克隆仓库：
 
 ```bash
-git clone https://codeberg.org/qklxsqf/fraction-ai-bot.git
+git clone https://github.com/ziqing888/fraction-ai-bot.git
 cd fraction-ai-bot
 ```
 
