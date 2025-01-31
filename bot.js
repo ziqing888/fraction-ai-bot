@@ -1,4 +1,3 @@
-
 import axios from 'axios';
 import chalk from 'chalk';
 import figlet from 'figlet';
@@ -7,8 +6,8 @@ import fs from 'fs/promises';
 import Table from 'cli-table3';
 import gradient from 'gradient-string';
 import logUpdate from 'log-update';
+import path from 'path';
 
-// 禁用Node.js弃用警告
 process.env.NODE_NO_WARNINGS = '1';
 
 // ====================
@@ -47,9 +46,9 @@ const 系统配置 = {
     会话类型: 1
   },
   运行控制: {
-    循环间隔: 1200000,   
-    请求间隔: 2000,       
-    最大时间偏差: 300000  
+    循环间隔: 1200000,    // 20分钟
+    请求间隔: 2000,       // 2秒
+    最大时间偏差: 300000  // 5分钟
   },
   调试模式: false
 };
@@ -57,35 +56,46 @@ const 系统配置 = {
 // ====================
 // 可视化模块
 // ====================
-function 显示标题() {
-  const titleGradient = gradient(['#00FF88', '#00D8FF', '#0066FF']);
-  console.log(
-    titleGradient(
-      figlet.textSync('空投系统', {
-        font: 'Slant',
-        horizontalLayout: 'default',
-        verticalLayout: 'default'
-      })
-    )
-  );
- console.log(
-  chalk.bgHex('#1A1A1A').hex('#00FF88')(' 加入我们：电报频道：https://t.me/ksqxszq ') +
-  输出样式.颜色主题.数值('  v2.1.0') +
-  '\n' +
-  chalk.hex('#2A2A2A')('━'.repeat(50)) + '\n' +
-  chalk.hex('#00FF88')('推特：@qklxsqf') + '\n' +
-  chalk.hex('#2A2A2A')('━'.repeat(50))
-);
-  console.log(输出样式.颜色主题.时间(
-    `启动于 ${new Date().toLocaleString('zh-CN', { 
-      year: 'numeric',
-      month: '2-digit',
-      day: '2-digit',
-      hour: '2-digit',
-      minute: '2-digit'
-    })}`
-  ));
-  console.log(输出样式.分隔线 + '\n');
+
+function displayTitle() {
+    const titleGradient = gradient(['#00FF88', '#00D8FF', '#0066FF']);
+
+    const banner = `
+fractionai 自动化机器人 v2.1.0`;
+
+    console.log(
+        titleGradient(
+            figlet.textSync('fractionai', {
+                font: 'Slant',
+                horizontalLayout: 'default',
+                verticalLayout: 'default'
+            })
+        )
+    );
+
+   
+    console.log(titleGradient(banner)); 
+
+    console.log(
+      chalk.bgHex('#1A1A1A').hex('#00FF88')(' 加入我们：电报频道：https://t.me/ksqxszq ') +
+      输出样式.颜色主题.数值('  v2.1.0') +
+      '\n' +
+      chalk.hex('#2A2A2A')('━'.repeat(50)) + '\n' +
+      chalk.hex('#00FF88')('推特：@qklxsqf') + '\n' +
+      chalk.hex('#2A2A2A')('━'.repeat(50))
+    );
+    
+    console.log(输出样式.颜色主题.时间(
+      `启动于 ${new Date().toLocaleString('zh-CN', { 
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit'
+      })}`
+    ));
+    
+    console.log(输出样式.分隔线 + '\n');
 }
 
 const 延迟 = (毫秒) => new Promise(resolve => setTimeout(resolve, 毫秒));
@@ -320,6 +330,7 @@ async function 处理单个钱包(私钥, 序号, 总数) {
     状态: 代理列表.length > 0 ? chalk.bgGreen.black(' ✅ ONLINE ') : chalk.bgRed.black(' ❌ OFFLINE ')
   }];
 
+ 
   const 表格 = new Table({
     head: [
       chalk.hex('#00FFEE')('🆔 序号'),
@@ -330,7 +341,7 @@ async function 处理单个钱包(私钥, 序号, 总数) {
     ],
     colWidths: [10, 30, 15, 15, 20], 
     colAligns: ['left', 'left', 'right', 'right', 'left'],
-    wordWrap: true, 
+    wordWrap: true, /
     style: {
       head: [], 
       border: [] 
@@ -400,15 +411,15 @@ async function 执行空间加入流程(认证结果, 代理列表) {
 // 主流程控制
 // ====================
 async function 主流程() {
-  显示标题();
+  displayTitle();
   
   try {
     const 钱包列表 = await 加载钱包文件();
     let 循环次数 = 1;
     
     while (true) {
-        console.clear(); 
-      显示标题(); 
+      console.clear(); 
+      displayTitle(); 
       
       console.log(输出样式.颜色主题.强调(`\n🌀 开始第 ${循环次数} 轮循环\n`));
       
@@ -443,5 +454,8 @@ async function 主流程() {
   }
 }
 
-// 启动系统
-主流程();
+
+主流程().catch(error => {
+  console.error(chalk.bgRed.white.bold(` ‼ 未处理的系统错误: ${error.message} `));
+  process.exit(1);
+});
