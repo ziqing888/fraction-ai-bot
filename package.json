@@ -2,7 +2,7 @@
   "name": "fractionai-automation",
   "version": "2.1.0",
   "main": "bot.js",
-  "type": "module",  
+  "type": "module",
   "dependencies": {
     "axios": "^0.27.2",
     "chalk": "^5.2.0",
@@ -19,7 +19,25 @@
     "start": "node bot.js"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "keywords": [
+    "FractionAI",
+    "Automation",
+    "Crypto",
+    "Web3",
+    "Ethereum",
+    "Blockchain",
+    "dApp",
+    "MetaMask",
+    "CLI Tool",
+    "Bot",
+    "Smart Contract",
+    "API",
+    "fraction-ai",
+    "fraction-ai-bot",
+    "fractal-bot",
+    "fract-ai"
+  ]
 }
 
 
